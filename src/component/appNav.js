@@ -1,8 +1,8 @@
-import React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import {makeStyles} from "@material-ui/core/styles";
-import {NavLink} from "react-router-dom";
+import React from 'react'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import {makeStyles} from "@material-ui/core/styles"
+import {NavLink} from "react-router-dom"
 
 
 const useStyles = makeStyles({
