@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {Link as MaterialLink} from "@material-ui/core/";
-import {Link} from "react-router-dom"
+import {Link, Redirect} from "react-router-dom"
+import useFetch from "../../hooks/useFetch";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import {CurrentUserContext} from "../../contexts/currentUsers";
 
 
 const useStyles = makeStyles((theme) => (
@@ -23,57 +26,123 @@ const useStyles = makeStyles((theme) => (
 				color: theme.palette.text.secondary,
 			},
 			item: {
-				marginTop: theme.spacing(4),
+				marginBottom: theme.spacing(4),
 			}
 		}));
 
-const Auth = () => {
-	const classes = useStyles();
+const Auth = (props) => {
+	const isLogin = props.match.path === '/login'
+	const pageTitle = isLogin ? 'Sing In' : 'Sing Up'
+	const descriptionLink = isLogin ? '/register' : '/login'
+	const descriptionText = isLogin ? 'Need an account?' : 'Have an account?'
+	const apiUrl = isLogin ? '/users/login' : '/users'
+	const classes = useStyles()
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [username, setUsername] = useState('')
+	const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false)
+	const [{isLoading, response, error}, doFetch] = useFetch(apiUrl)
+	const [token, setToken] = useLocalStorage('token')
+	const [currentUserState, setCurrentUserState] = useContext(CurrentUserContext);
+
+	console.log('---AUTH---STATE---',currentUserState)
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		console.log('DATA:', email, password)
+		const user = isLogin ? {email, password} : {email, password, username}
+		doFetch({
+			method: 'post',
+			data: {
+				user
+			}
+		}) //doFetch
+	} //handleSubmit
+
+	response && console.log('RESPONSE:', isLoading, response, error, token)
+
+	useEffect(() => {
+		if (!response) {
+			return
+		}
+		setToken(response.user.token)
+		setIsSuccessfulSubmit(true)
+		setCurrentUserState(state =>({
+			...state,
+			isLoading: false,
+			isLoggedIn: true,
+			currentUser: response.user
+		}))
+	}, [response, setToken, setCurrentUserState])
+
+	 if (isSuccessfulSubmit) {
+	 	return <Redirect to='/' />
+	 }
 	return (
 			<Container maxWidth="md">
 				<Grid container className={classes.root}>
 					<Grid item md={8} sm={10} xs={12}>
 						<Paper className={classes.paper}>
 							<Typography variant="h2" gutterBottom>
-								Login
+								{pageTitle}
 							</Typography>
-							<MaterialLink to="/register" component={Link}>
+							<MaterialLink to={descriptionLink} component={Link}>
 								<Typography variant="h6" gutterBottom>
-									Need an account?
+									{descriptionText}
 								</Typography>
 							</MaterialLink>
-							<br/>
-							<Grid container>
-								<Grid item xs={12}>
-									<TextField
-											required
-											fullWidth
-											id="email-input"
-											label="Email"
-											type="email"
-											variant="outlined"
-									/>
-								</Grid>
-								<Grid item xs={12} className={classes.item}>
-									<TextField
-											required
-											fullWidth
-											id="password-input"
-											label="Password"
-											type="password"
-											autoComplete="current-password"
-											variant="outlined"
-									/>
+							<form onSubmit={handleSubmit}>
+								<Grid container>
+									{!isLogin && (
+											<Grid item xs={12} className={classes.item}>
+												<TextField
+														required
+														fullWidth
+														id="user-input"
+														type="text"
+														label="Username"
+														variant="outlined"
+														value={username}
+														onChange={e => setUsername(e.target.value)}
+												/>
+											</Grid>
+									)}
 									<Grid item xs={12} className={classes.item}>
+										<TextField
+												required
+												fullWidth
+												id="email-input"
+												label="Email"
+												type="email"
+												variant="outlined"
+												value={email}
+												onChange={e => setEmail(e.target.value)}
+										/>
+									</Grid>
+									<Grid item xs={12} className={classes.item}>
+										<TextField
+												required
+												fullWidth
+												id="password-input"
+												label="Password"
+												type="password"
+												variant="outlined"
+												value={password}
+												onChange={e => setPassword(e.target.value)}
+										/>
+									</Grid>
+									<Grid item xs={12}>
 										<Button
 												variant="contained"
 												size="large"
-												color="primary">
-											Sign in
+												type="submit"
+												color="primary"
+												disabled={isLoading}
+										>
+											{pageTitle}
 										</Button>
 									</Grid>
 								</Grid>
-							</Grid>
+							</form>
 						</Paper>
 					</Grid>
 				</Grid>

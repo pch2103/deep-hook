@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import AppNav from "./appNav"
-import {Link, NavLink} from "react-router-dom"
+import {Link} from "react-router-dom"
 import {ReactComponent as AppLogo} from './AppLogoDark.svg'
 
 const useStyles = makeStyles((theme) => (
@@ -39,9 +39,9 @@ const TopBar = () => {
 							<AppLogo className={classes.logo}/>
 						</Link>
 						<AppNav/>
-						<Button width={90} color="inherit" to='/login' component={NavLink} className={classes.menuButton}>Sing
+						<Button width={90} color="inherit" to='/login' component={Link} className={classes.menuButton}>Sing
 							in</Button>&nbsp;
-						<Button  to='/register' component={NavLink} variant="contained" color="secondary">Sing
+						<Button to='/register' component={Link} variant="contained" color="secondary">Sing
 							up</Button>
 					</Toolbar>
 				</AppBar>
