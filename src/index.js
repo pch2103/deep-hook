@@ -8,6 +8,7 @@ import Routes from "./routes"
 import {lightGreen, deepOrange} from "@material-ui/core/colors"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import {CurrentUserProvider} from "./contexts/currentUsers";
+import CurrentUserChecker from "./component/currentUserChecker";
 
 
 const App = () => {
@@ -22,13 +23,15 @@ const App = () => {
 	return (
 			<div>
 				<CurrentUserProvider>
-					<ThemeProvider theme={darkTheme}>
-						<CssBaseline/>
-						<BrowserRouter>
-							<TopBar/>
-							<Routes/>
-						</BrowserRouter>
-					</ThemeProvider>
+					<CurrentUserChecker>
+						<ThemeProvider theme={darkTheme}>
+							<CssBaseline/>
+							<BrowserRouter>
+								<TopBar/>
+								<Routes/>
+							</BrowserRouter>
+						</ThemeProvider>
+					</CurrentUserChecker>
 				</CurrentUserProvider>
 			</div>
 	)

@@ -11,7 +11,7 @@ import {Link, Redirect} from "react-router-dom"
 import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import {CurrentUserContext} from "../../contexts/currentUsers";
-
+import BackendErrorMessages from "./components/backendErrorMessages";
 
 const useStyles = makeStyles((theme) => (
 		{
@@ -42,13 +42,11 @@ const Auth = (props) => {
 	const [username, setUsername] = useState('')
 	const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false)
 	const [{isLoading, response, error}, doFetch] = useFetch(apiUrl)
-	const [token, setToken] = useLocalStorage('token')
-	const [currentUserState, setCurrentUserState] = useContext(CurrentUserContext);
+	const [ , setToken] = useLocalStorage('token')
+	const [ , setCurrentUserState] = useContext(CurrentUserContext);
 
-	console.log('---AUTH---STATE---',currentUserState)
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		console.log('DATA:', email, password)
 		const user = isLogin ? {email, password} : {email, password, username}
 		doFetch({
 			method: 'post',
@@ -57,8 +55,6 @@ const Auth = (props) => {
 			}
 		}) //doFetch
 	} //handleSubmit
-
-	response && console.log('RESPONSE:', isLoading, response, error, token)
 
 	useEffect(() => {
 		if (!response) {
@@ -91,6 +87,13 @@ const Auth = (props) => {
 								</Typography>
 							</MaterialLink>
 							<form onSubmit={handleSubmit}>
+								{error &&
+								<Grid container>
+									<Grid item xs={12} className={classes.item}>
+										<BackendErrorMessages backendErrors={error.errors}/>
+									</Grid>
+								</Grid>
+								}
 								<Grid container>
 									{!isLogin && (
 											<Grid item xs={12} className={classes.item}>
