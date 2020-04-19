@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.js": "/hooks/static/js/main.51c3e4f7.chunk.js",
+    "main.js.map": "/hooks/static/js/main.51c3e4f7.chunk.js.map",
+    "runtime-main.js": "/hooks/static/js/runtime-main.f6adbe64.js",
+    "runtime-main.js.map": "/hooks/static/js/runtime-main.f6adbe64.js.map",
+    "static/css/2.1b7c9d4c.chunk.css": "/hooks/static/css/2.1b7c9d4c.chunk.css",
+    "static/js/2.44c19421.chunk.js": "/hooks/static/js/2.44c19421.chunk.js",
+    "static/js/2.44c19421.chunk.js.map": "/hooks/static/js/2.44c19421.chunk.js.map",
+    "index.html": "/hooks/index.html",
+    "precache-manifest.d1e38e84b78f3eab6a734234ac276654.js": "/hooks/precache-manifest.d1e38e84b78f3eab6a734234ac276654.js",
+    "service-worker.js": "/hooks/service-worker.js",
+    "static/css/2.1b7c9d4c.chunk.css.map": "/hooks/static/css/2.1b7c9d4c.chunk.css.map",
+    "static/js/2.44c19421.chunk.js.LICENSE.txt": "/hooks/static/js/2.44c19421.chunk.js.LICENSE.txt",
+    "static/media/AppLogoDark.0cffdb95.svg": "/hooks/static/media/AppLogoDark.0cffdb95.svg",
+    "static/media/index.css": "/hooks/static/media/roboto-latin-900italic.ebf6d164.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f6adbe64.js",
+    "static/css/2.1b7c9d4c.chunk.css",
+    "static/js/2.44c19421.chunk.js",
+    "static/js/main.51c3e4f7.chunk.js"
+  ]
+}
