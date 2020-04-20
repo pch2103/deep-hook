@@ -6,15 +6,11 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Hidden from '@material-ui/core/Hidden'
 import MenuIcon from '@material-ui/icons/Menu'
-
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider} from '@material-ui/core'
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
 import AppNav from "./appNav"
-import {Link} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import clsx from 'clsx';
 import {ReactComponent as AppLogo} from './AppLogoDark.svg'
+import SideDrawer from "./sideDrawer";
 
 const useStyles = makeStyles((theme) => (
 		{
@@ -33,62 +29,23 @@ const useStyles = makeStyles((theme) => (
 			hide: {
 				display: 'none',
 			},
-			list: {
-				width: 250,
-			},
-			fullList: {
-				width: 'auto',
-			},
 		}));
 
 
 const TopBar = () => {
 	const classes = useStyles();
-
 	const [drawer, setDrawer] = useState(false);
 
 	const toggleDrawer = (open) => (event) => {
 		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
 			return;
 		}
-
 		setDrawer(open);
-	};
-	const list = () => (
-			<div
-					className={classes.list}
-					role="presentation"
-					onClick={toggleDrawer(false)}
-					onKeyDown={toggleDrawer(false)}
-			>
-				<List>
-					{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-							<ListItem button key={text}>
-								<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-								<ListItemText primary={text} />
-							</ListItem>
-					))}
-				</List>
-				<Divider />
-				<List>
-					{['All mail', 'Trash', 'Spam'].map((text, index) => (
-							<ListItem button key={text}>
-								<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-								<ListItemText primary={text} />
-							</ListItem>
-					))}
-				</List>
-			</div>
-	);
-
-		console.log(drawer)
-
+	}
 
 	return (
 			<div>
-				<Drawer open={drawer} onClose={toggleDrawer(false)}>
-					{list()}
-				</Drawer>
+				<SideDrawer drawer={drawer} toggleDrawer={toggleDrawer}/>
 				<AppBar position="static">
 					<Toolbar>
 						<Hidden smUp>
@@ -102,14 +59,14 @@ const TopBar = () => {
 								<MenuIcon/>
 							</IconButton>
 						</Hidden>
-						<Link to='/' exact='true'>
+						<NavLink to='/' exact>
 							<AppLogo/>
-						</Link>
+						</NavLink>
 						<Hidden xsDown>
 							<AppNav/>
-							<Button width={90} color="inherit" to='/login' component={Link} className={classes.menuButton}>Sing
+							<Button width={90} color="inherit" to='/login' component={NavLink} className={classes.menuButton}>Sing
 								in</Button>&nbsp;
-							<Button to='/register' component={Link} variant="contained" color="secondary">Sing
+							<Button to='/register' component={NavLink} variant="contained" color="secondary">Sing
 								up</Button>
 						</Hidden>
 					</Toolbar>
