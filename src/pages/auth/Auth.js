@@ -7,12 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {Link as MaterialLink} from "@material-ui/core/";
-import {Link, Redirect} from "react-router-dom"
+import {NavLink, Redirect} from "react-router-dom"
 import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import {CurrentUserContext} from "../../contexts/currentUsers";
 import BackendErrorMessages from "./components/backendErrorMessages";
-
 
 const useStyles = makeStyles((theme) => (
 		{
@@ -74,6 +73,7 @@ const Auth = (props) => {
 	 if (isSuccessfulSubmit) {
 	 	return <Redirect to='/' />
 	 }
+
 	return (
 			<Container maxWidth="md">
 				<Grid container className={classes.root}>
@@ -82,7 +82,7 @@ const Auth = (props) => {
 							<Typography variant="h2" gutterBottom>
 								{pageTitle}
 							</Typography>
-							<MaterialLink to={descriptionLink} component={Link}>
+							<MaterialLink to={descriptionLink} component={NavLink}>
 								<Typography variant="h6" gutterBottom>
 									{descriptionText}
 								</Typography>

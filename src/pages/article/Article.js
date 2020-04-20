@@ -2,9 +2,9 @@ import React from 'react';
 
 const Article = () => {
 	return (
-			<div>
+			<h1>
 				ARTICLES
-			</div>
+			</h1>
 	);
 };
 

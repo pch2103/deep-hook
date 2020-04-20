@@ -2,9 +2,9 @@ import React from 'react';
 
 const GlobalFeed = () => {
 	return (
-			<div>
+			<h1>
 				GLOBAL FEED
-			</div>
+			</h1>
 	);
 };
 

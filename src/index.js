@@ -10,7 +10,6 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 import {CurrentUserProvider} from "./contexts/currentUsers";
 import CurrentUserChecker from "./component/currentUserChecker";
 
-
 const App = () => {
 	const darkTheme = createMuiTheme({
 		palette: {
@@ -27,8 +26,8 @@ const App = () => {
 						<ThemeProvider theme={darkTheme}>
 							<CssBaseline/>
 							<BrowserRouter basename="/deep-hook">
-								<TopBar/>
-								<Routes/>
+									<TopBar/>
+									<Routes/>
 							</BrowserRouter>
 						</ThemeProvider>
 					</CurrentUserChecker>

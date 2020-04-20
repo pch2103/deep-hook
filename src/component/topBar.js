@@ -2,23 +2,33 @@ import React, {useState} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Hidden from '@material-ui/core/Hidden'
 import MenuIcon from '@material-ui/icons/Menu'
-import AppNav from "./appNav"
-import {NavLink} from "react-router-dom"
+import {NavLink, useLocation} from "react-router-dom"
 import clsx from 'clsx';
 import {ReactComponent as AppLogo} from './AppLogoDark.svg'
 import SideDrawer from "./sideDrawer";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 const useStyles = makeStyles((theme) => (
 		{
 			root: {
 				flexGrow: 1,
 			},
-			menuButton: {
-				marginRight: theme.spacing(2),
+			tabItem: {
+				height: 60,
+				'&:hover': {
+					background: 'rgba(255, 255, 255, 0.18)',
+					transition: 'background .3s',
+					opacity: 1,
+				},
+				'&:focus': {
+					background: 'rgba(0, 0, 0, 0.07)',
+					opacity: 1,
+				},
+
 			},
 			logo: {
 				marginRight: theme.spacing(1),
@@ -31,10 +41,30 @@ const useStyles = makeStyles((theme) => (
 			},
 		}));
 
-
 const TopBar = () => {
 	const classes = useStyles();
+	const menuConfig = [
+		{
+			"text": "To Home",
+			"link": "/"
+		},
+		{
+			"text": "Articles",
+			"link": "/articles/a"
+		},
+		{
+			"text": "Sing In",
+			"link": "/login"
+		},
+		{
+			"text": "Sing Up",
+			"link": "/register"
+		},
+	]
+
 	const [drawer, setDrawer] = useState(false);
+	const location = useLocation();
+
 
 	const toggleDrawer = (open) => (event) => {
 		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -59,15 +89,28 @@ const TopBar = () => {
 								<MenuIcon/>
 							</IconButton>
 						</Hidden>
-						<NavLink to='/' exact>
+						<NavLink to='/' exact >
 							<AppLogo/>
 						</NavLink>
 						<Hidden xsDown>
-							<AppNav/>
-							<Button width={90} color="inherit" to='/login' component={NavLink} className={classes.menuButton}>Sing
-								in</Button>&nbsp;
-							<Button to='/register' component={NavLink} variant="contained" color="secondary">Sing
-								up</Button>
+							<Tabs
+									value={ location.pathname }
+									aria-label="disabled tabs example"
+									centered
+									className={classes.root}
+							>
+								{menuConfig.map((content, i) => (
+									  <Tab
+												key={i}
+												label={content.text}
+												to={content.link}
+												value={ content.link }
+												component={NavLink}
+												className={classes.tabItem}
+										/>
+										)
+								)}
+							</Tabs>
 						</Hidden>
 					</Toolbar>
 				</AppBar>
