@@ -1,10 +1,6 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
-import {Divider, Drawer, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
-import HomeIcon from '@material-ui/icons/Home'
-import DescriptionIcon from '@material-ui/icons/Description'
-import SingUpIcon from '@material-ui/icons/PermIdentity'
-import SingInIcon from '@material-ui/icons/HowToReg'
+import {Drawer, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import {NavLink} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => (
@@ -17,7 +13,7 @@ const useStyles = makeStyles((theme) => (
 			},
 		}));
 
-const SideDrawer = ({drawer, toggleDrawer}) => {
+const SideDrawer = ({drawer, toggleDrawer, menuTextAndLink}) => {
 	const classes = useStyles();
 
 	const list = () => (
@@ -28,25 +24,13 @@ const SideDrawer = ({drawer, toggleDrawer}) => {
 					onKeyDown={toggleDrawer(false)}
 			>
 				<List>
-					<ListItem button to='/'   component={NavLink}>
-						<ListItemIcon><HomeIcon/></ListItemIcon>
-						<ListItemText primary='To Home'/>
-					</ListItem>
-					<ListItem button to='/articles/a' component={NavLink}>
-						<ListItemIcon><DescriptionIcon/></ListItemIcon>
-						<ListItemText primary='Article'/>
-					</ListItem>
-				</List>
-				<Divider/>
-				<List>
-					<ListItem button to='/login' component={NavLink}>
-						<ListItemIcon><SingInIcon/></ListItemIcon>
-						<ListItemText primary='Sing In'/>
-					</ListItem>
-					<ListItem button to='/register' component={NavLink}>
-						<ListItemIcon><SingUpIcon/></ListItemIcon>
-						<ListItemText primary='Sing Up'/>
-					</ListItem>
+				{ menuTextAndLink.map((content, i) => (
+						<ListItem key={i} button to={content.link} component={NavLink}>
+							<ListItemIcon>{content.icon}</ListItemIcon>
+							<ListItemText primary={content.text}/>
+						</ListItem>
+						)
+				)}
 				</List>
 			</div>
 	);
