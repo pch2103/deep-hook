@@ -12,23 +12,27 @@ import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import {CurrentUserContext} from "../../contexts/currentUsers";
 import BackendErrorMessages from "./components/backendErrorMessages";
+import {responsiveFontSizes} from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => (
-		{
+const useStyles = makeStyles((theme) => {
+const responsiveTheme = responsiveFontSizes(theme);
+
+return ({
 			root: {
 				flexGrow: 1,
-				marginTop: theme.spacing(4),
+				marginTop: responsiveTheme.spacing(4),
 				justifyContent: "center"
 			},
 			paper: {
-				padding: theme.spacing(2),
+				padding: responsiveTheme.spacing(2),
 				textAlign: 'center',
-				color: theme.palette.text.secondary,
+				color: responsiveTheme.palette.text.secondary,
 			},
 			item: {
-				marginBottom: theme.spacing(4),
+				marginBottom: responsiveTheme.spacing(4),
 			}
-		}));
+		})
+		});
 
 const Auth = (props) => {
 	const isLogin = props.match.path === '/login'

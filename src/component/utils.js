@@ -4,7 +4,20 @@ import SingUpIcon from '@material-ui/icons/PersonAdd'
 import SingInIcon from '@material-ui/icons/HowToReg'
 import LogOut from '@material-ui/icons/PermIdentity'
 import React from "react";
+import {parse} from 'query-string' // parse Urls https://www.npmjs.com/package/query-string
 
+//Variables and Constant
+export const limit = 10 //item per sting
+
+export const getPaginator = search => {
+	const parsedSearch = parse(search) // '?foo=bar' => {foo: 'bar'}
+	const currentPage = parsedSearch.page ? Number(parsedSearch.page) : 1
+	const offset = currentPage*10 - limit
+
+	return {currentPage, offset}
+}
+
+// Menu
 export const menuWithLogin = [
 	{
 		"text": "To Home",

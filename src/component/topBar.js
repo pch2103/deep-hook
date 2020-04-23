@@ -12,7 +12,7 @@ import SideDrawer from "./sideDrawer";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import {CurrentUserContext} from "../contexts/currentUsers";
-import {menuWithLogin, menuWithUser} from "../component/menuTextAndLink"
+import {menuWithLogin, menuWithUser} from "./utils"
 import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => (
@@ -103,7 +103,8 @@ const TopBar = () => {
 											:  <Avatar
 													alt="User"
 													src={content.avatar}
-													className={classes.iconSmall}/>
+													className={classes.iconSmall}
+											/>
 									return(
 											<Tab
 													key={i}
