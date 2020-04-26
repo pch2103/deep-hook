@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => {
 			})
 });
 
-const GlobalFeed = (props) => {
+const YourFeed = (props) => {
 	const {currentPage, offset} = getPaginator(props.location.search)
 	const classes = useStyles();
 	const stringifiedParams = stringify(
@@ -42,7 +42,7 @@ const GlobalFeed = (props) => {
 			} //=> 'limit=10&offset=0'
 	)
 	const url = props.match.url
-	const apiUrl = `/articles?${stringifiedParams}`
+	const apiUrl = `/articles/feed?${stringifiedParams}`
 	const [{isLoading, response, error}, doFetch] = useFetch(apiUrl)
 
 	useEffect(() => {
@@ -63,7 +63,8 @@ const GlobalFeed = (props) => {
 							{error && <div>Error...</div>}
 							{!isLoading && response &&
 							<>
-								<Feed articles={response.articles}/>
+								{!response.articles.articlesCount && <div>No articles are here... yet.'</div>}
+							<Feed articles={response.articles}/>
 								<PageListing
 										total={response.articlesCount}
 										limit={limit}
@@ -83,4 +84,4 @@ const GlobalFeed = (props) => {
 	)
 };
 
-export default GlobalFeed;
+export default YourFeed;

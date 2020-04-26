@@ -45,7 +45,7 @@ return [
 		},
 		{
 			"text": "New Post",
-			"link": "/articles/new",
+			"link": "/posts",
 			"icon": <DescriptionIcon/>
 		},
 		{

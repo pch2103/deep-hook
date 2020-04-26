@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => (
 const TopBar = () => {
 	const classes = useStyles();
 
-
 	const [currentUserState] = useContext(CurrentUserContext)
 	const [drawer, setDrawer] = useState(false);
 	const location = useLocation();
@@ -60,6 +59,8 @@ const TopBar = () => {
 					? menuWithLogin
 					: menuWithUser(currentUserState)
 
+	const isInTopBar = menuTextAndLink.map((item)=>item.link).includes(location.pathname)
+	const currenValue = isInTopBar ? location.pathname : '/'
 	const toggleDrawer = (open) => (event) => {
 		if (event.type === 'keydown' && (
 				event.key === 'Tab' || event.key === 'Shift')) {
@@ -93,7 +94,7 @@ const TopBar = () => {
 						</NavLink>
 						<Hidden xsDown>
 							<Tabs
-									value={location.pathname}
+									value={currenValue}
 									aria-label="disabled tabs example"
 									centered
 									className={classes.root}

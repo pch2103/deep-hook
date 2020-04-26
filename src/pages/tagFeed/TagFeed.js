@@ -32,13 +32,15 @@ const useStyles = makeStyles((theme) => {
 			})
 });
 
-const GlobalFeed = (props) => {
+const TagFeed = (props) => {
+	const tagName = props.match.params.slug
 	const {currentPage, offset} = getPaginator(props.location.search)
 	const classes = useStyles();
 	const stringifiedParams = stringify(
 			{
 				limit,
-				offset
+				offset,
+				tag: tagName
 			} //=> 'limit=10&offset=0'
 	)
 	const url = props.match.url
@@ -47,7 +49,7 @@ const GlobalFeed = (props) => {
 
 	useEffect(() => {
 		doFetch()
-	}, [doFetch, currentPage])
+	}, [doFetch, currentPage, tagName])
 
 	return (
 			<>
@@ -58,7 +60,7 @@ const GlobalFeed = (props) => {
 				<Container maxWidth="md" className={classes.content}>
 					<Grid container spacing={2}>
 						<Grid item xs={9}>
-							<FeedToogler />
+							<FeedToogler tagName={tagName}/>
 							{isLoading && <CircularProgress disableShrink/>}
 							{error && <div>Error...</div>}
 							{!isLoading && response &&
@@ -83,4 +85,4 @@ const GlobalFeed = (props) => {
 	)
 };
 
-export default GlobalFeed;
+export default TagFeed;

@@ -6,6 +6,7 @@ import {Link as MaterialLink} from "@material-ui/core/";
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import {Typography} from "@material-ui/core";
+import TagsRenderer from "./tagsRenderer";
 
 const useStyles = makeStyles(theme => (
 		{
@@ -40,6 +41,7 @@ const useStyles = makeStyles(theme => (
 const Feed = ({articles}) => {
 	const classes = useStyles();
 
+
 	return (
 			<div>
 				{articles.map((article, index) => (
@@ -59,7 +61,7 @@ const Feed = ({articles}) => {
 										<Typography variant="h6">
 											<MaterialLink
 													to={`/profiles/${article.author.username}`}
-													className={classes.primaryText}
+													color="inherit"
 													component={Link}>
 												{article.author.username}
 											</MaterialLink>
@@ -68,18 +70,14 @@ const Feed = ({articles}) => {
 											{article.createdAt}
 										</span>
 									</div>
-									<MaterialLink to={`/articles/${article.slug}`}>
-										<Typography variant="h5">{article.title}</Typography>
-										<p className={classes.secondaryText}>{article.description}</p>
-										<span className={classes.secondaryText}>Read more...</span>
-										<ul>
-											{article.tagList.map(tag => (
-													<li key={tag}>
-														{tag}
-													</li>
-											))}
-										</ul>
-									</MaterialLink>
+									<Typography variant="h4">
+										<MaterialLink to={`/articles/${article.slug}`} component={Link}>
+											{article.title}
+										</MaterialLink>
+									</Typography>
+									<p className={classes.secondaryText}>{article.description}</p>
+									<span className={classes.secondaryText}>Read more...</span>
+									<TagsRenderer tags={article.tagList}/>
 								</Grid>
 							</Grid>
 						</Card>
