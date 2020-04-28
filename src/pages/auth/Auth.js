@@ -11,12 +11,11 @@ import {NavLink, Redirect} from "react-router-dom"
 import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import {CurrentUserContext} from "../../contexts/currentUsers";
-import BackendErrorMessages from "./components/backendErrorMessages";
+import BackendErrorMessages from "../../component/backendErrorMessages";
 import {responsiveFontSizes} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => {
 const responsiveTheme = responsiveFontSizes(theme);
-
 return ({
 			root: {
 				flexGrow: 1,
@@ -35,21 +34,19 @@ return ({
 		});
 
 const Auth = (props) => {
+	const classes = useStyles()
 	const isLogin = props.match.path === '/login'
 	const pageTitle = isLogin ? 'Sing In' : 'Sing Up'
 	const descriptionLink = isLogin ? '/register' : '/login'
 	const descriptionText = isLogin ? 'Need an account?' : 'Have an account?'
 	const apiUrl = isLogin ? '/users/login' : '/users'
-	const classes = useStyles()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [username, setUsername] = useState('')
 	const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false)
 	const [{isLoading, response, error}, doFetch] = useFetch(apiUrl)
 	const [ , setToken] = useLocalStorage('token')
-	const [state, dispatch] = useContext(CurrentUserContext);
-
-	console.log('STATE', state)
+	const [ , dispatch] = useContext(CurrentUserContext);
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
