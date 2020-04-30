@@ -7,6 +7,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import {Typography} from "@material-ui/core";
 import TagsRenderer from "./tagsRenderer";
+import AddToFavorites from "./addToFavorites";
 
 const useStyles = makeStyles(theme => (
 		{
@@ -35,12 +36,19 @@ const useStyles = makeStyles(theme => (
 			large: {
 				width: theme.spacing(7),
 				height: theme.spacing(7),
+			},
+			likedName: {
+				width: '100%',
+				display: 'flex',
+				justifyContent: "space-between"
+			},
+			like: {
+				flexShrink: 0,
 			}
 		}));
 
 const Feed = ({articles}) => {
 	const classes = useStyles();
-
 
 	return (
 			<div>
@@ -57,7 +65,7 @@ const Feed = ({articles}) => {
 									</Link>
 								</Grid>
 								<Grid item xs={10}>
-									<div>
+									<div className={classes.likedName}>
 										<Typography variant="h6">
 											<MaterialLink
 													to={`/profiles/${article.author.username}`}
@@ -66,10 +74,17 @@ const Feed = ({articles}) => {
 												{article.author.username}
 											</MaterialLink>
 										</Typography>
-										<span className={classes.secondaryText}>
-											{article.createdAt}
-										</span>
+										<div className={classes.like}>
+										<AddToFavorites
+												isFavorited={article.favorited}
+												favoritesCount={article.favoritesCount}
+												articleSlug={article.slug}
+										/>
+										</div>
 									</div>
+										<div className={classes.secondaryText}>
+											{article.createdAt}
+										</div>
 									<Typography variant="h4">
 										<MaterialLink to={`/articles/${article.slug}`} component={Link}>
 											{article.title}
@@ -78,6 +93,8 @@ const Feed = ({articles}) => {
 									<p className={classes.secondaryText}>{article.description}</p>
 									<span className={classes.secondaryText}>Read more...</span>
 									<TagsRenderer tags={article.tagList}/>
+								</Grid>
+								<Grid item xs={1}>
 								</Grid>
 							</Grid>
 						</Card>

@@ -11,7 +11,7 @@ import PageListing from "../../component/pageListing";
 import {getPaginator, limit} from '../../component/utils'
 import {stringify} from 'query-string'
 import PopularTags from "../../component/popularTags";
-import FeedToogler from "../../component/feedToogler";
+import FeedToggler from "../../component/feedToggler";
 
 const useStyles = makeStyles((theme) => {
 	const responsiveTheme = responsiveFontSizes(theme);
@@ -58,7 +58,7 @@ const GlobalFeed = (props) => {
 				<Container maxWidth="md" className={classes.content}>
 					<Grid container spacing={2}>
 						<Grid item xs={9}>
-							<FeedToogler />
+							<FeedToggler />
 							{isLoading && <CircularProgress disableShrink/>}
 							{error && <div>Error...</div>}
 							{!isLoading && response &&

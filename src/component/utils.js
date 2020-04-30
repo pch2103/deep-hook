@@ -2,7 +2,7 @@ import HomeIcon from '@material-ui/icons/Home'
 import DescriptionIcon from '@material-ui/icons/Description'
 import SingUpIcon from '@material-ui/icons/PersonAdd'
 import SingInIcon from '@material-ui/icons/HowToReg'
-import LogOut from '@material-ui/icons/PermIdentity'
+import Settings from '@material-ui/icons/Settings'
 import React from "react";
 import {parse} from 'query-string' // parse Urls https://www.npmjs.com/package/query-string
 
@@ -12,7 +12,7 @@ export const limit = 10 //item per sting
 export const getPaginator = search => {
 	const parsedSearch = parse(search) // '?foo=bar' => {foo: 'bar'}
 	const currentPage = parsedSearch.page ? Number(parsedSearch.page) : 1
-	const offset = currentPage*10 - limit
+	const offset = currentPage * 10 - limit
 
 	return {currentPage, offset}
 }
@@ -37,7 +37,7 @@ export const menuWithLogin = [
 ]
 
 export const menuWithUser = ({currentUser}) => {
-return [
+	return [
 		{
 			"text": "To Home",
 			"link": "/",
@@ -49,9 +49,14 @@ return [
 			"icon": <DescriptionIcon/>
 		},
 		{
+			"text": "Settings",
+			"link": "/settings",
+			"icon": <Settings/>
+		},
+		{
 			"text": "User: " + currentUser.username,
 			"link": "/profiles/" + currentUser.username,
-			"icon": <LogOut/>,
+			"icon": '',
 			"avatar": currentUser.image
 		},
 	]
