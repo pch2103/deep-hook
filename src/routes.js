@@ -12,7 +12,7 @@ import UserProfile from "./pages/userProflle/UserProfile";
 
 const Routes = () => {
 	return (
-			<BrowserRouter basename='/deep-hook'>
+			<BrowserRouter basename='/'>
 				<Switch>
 					<Route path='/' component={GlobalFeed} exact/>
 					<Route path='/profiles/:slug' component={UserProfile} exact/>
