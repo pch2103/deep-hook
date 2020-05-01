@@ -1,5 +1,5 @@
 import React from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, HashRouter} from 'react-router-dom'
 import GlobalFeed from "./pages/globalFeed/GlobalFeed"
 import Article from "./pages/article/Article"
 import Auth from "./pages/auth/Auth"
@@ -12,6 +12,7 @@ import UserProfile from "./pages/userProflle/UserProfile";
 
 const Routes = () => {
 	return (
+			<HashRouter basename="/">
 		<Switch>
 			<Route path='/' component={GlobalFeed} exact />
 			<Route path='/profiles/:slug' component={UserProfile} exact/>
@@ -24,7 +25,9 @@ const Routes = () => {
 			<Route path='/login' component={Auth} />
 			<Route path='/register' component={Auth} />
 			<Route path='/articles/:slug' component={Article} />
+
 		</Switch>
+			</HashRouter>
 	);
 }
 

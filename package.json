@@ -1,8 +1,8 @@
 {
-  "name": "hook_deep_education",
+  "homepage": "https://pch2103.github.io/deep-hook",
+  "name": "deep-hook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://pch2103.github.io/deep-hook",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
