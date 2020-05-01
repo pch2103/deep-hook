@@ -12,7 +12,7 @@ import UserProfile from "./pages/userProflle/UserProfile";
 
 const Routes = () => {
 	return (
-			<BrowserRouter basename='/'>
+
 				<Switch>
 					<Route path='/' component={GlobalFeed} exact/>
 					<Route path='/profiles/:slug' component={UserProfile} exact/>
@@ -26,8 +26,6 @@ const Routes = () => {
 					<Route path='/register' component={Auth}/>
 					<Route path='/articles/:slug' component={Article}/>
 				</Switch>
-			</BrowserRouter>
-
 	);
 }
 
