@@ -2,7 +2,7 @@ import React from 'react'
 import {render} from 'react-dom'
 import 'typeface-roboto';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles'
-import {BrowserRouter} from "react-router-dom"
+import {BrowserRouter, HashRouter} from "react-router-dom"
 import TopBar from "./component/topBar"
 import Routes from "./routes"
 import {lightGreen, deepOrange} from "@material-ui/core/colors"
@@ -21,17 +21,17 @@ const App = () => {
 
 	return (
 			<div>
-				<CurrentUserProvider>
-					<CurrentUserChecker>
-						<ThemeProvider theme={darkTheme}>
-							<CssBaseline/>
-							<BrowserRouter>
-									<TopBar/>
-									<Routes/>
-							</BrowserRouter>
-						</ThemeProvider>
-					</CurrentUserChecker>
-				</CurrentUserProvider>
+				<HashRouter basename='/'>
+					<CurrentUserProvider>
+						<CurrentUserChecker>
+							<ThemeProvider theme={darkTheme}>
+								<CssBaseline/>
+								<TopBar/>
+								<Routes/>
+							</ThemeProvider>
+						</CurrentUserChecker>
+					</CurrentUserProvider>
+				</HashRouter>
 			</div>
 	)
 }
