@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.js": "/deep-hook/static/js/main.214a2751.chunk.js",
-    "main.js.map": "/deep-hook/static/js/main.214a2751.chunk.js.map",
-    "runtime-main.js": "/deep-hook/static/js/runtime-main.e6df3388.js",
-    "runtime-main.js.map": "/deep-hook/static/js/runtime-main.e6df3388.js.map",
-    "static/css/2.cdb468e5.chunk.css": "/deep-hook/static/css/2.cdb468e5.chunk.css",
-    "static/js/2.06bcf58a.chunk.js": "/deep-hook/static/js/2.06bcf58a.chunk.js",
-    "static/js/2.06bcf58a.chunk.js.map": "/deep-hook/static/js/2.06bcf58a.chunk.js.map",
-    "index.html": "/deep-hook/index.html",
-    "precache-manifest.96080fda68542cfea5b62453c70d51bf.js": "/deep-hook/precache-manifest.96080fda68542cfea5b62453c70d51bf.js",
-    "service-worker.js": "/deep-hook/service-worker.js",
-    "static/css/2.cdb468e5.chunk.css.map": "/deep-hook/static/css/2.cdb468e5.chunk.css.map",
-    "static/js/2.06bcf58a.chunk.js.LICENSE.txt": "/deep-hook/static/js/2.06bcf58a.chunk.js.LICENSE.txt",
-    "static/media/AppLogoDark.0cffdb95.svg": "/deep-hook/static/media/AppLogoDark.0cffdb95.svg",
-    "static/media/index.css": "/deep-hook/static/media/roboto-latin-900italic.ebf6d164.woff2"
+    "main.js": "/static/js/main.75e39b5e.chunk.js",
+    "main.js.map": "/static/js/main.75e39b5e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.dddc0409.js",
+    "runtime-main.js.map": "/static/js/runtime-main.dddc0409.js.map",
+    "static/css/2.47271137.chunk.css": "/static/css/2.47271137.chunk.css",
+    "static/js/2.93451c4e.chunk.js": "/static/js/2.93451c4e.chunk.js",
+    "static/js/2.93451c4e.chunk.js.map": "/static/js/2.93451c4e.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.d9a49aa80b6b7301fd9ea8a6475c02db.js": "/precache-manifest.d9a49aa80b6b7301fd9ea8a6475c02db.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.47271137.chunk.css.map": "/static/css/2.47271137.chunk.css.map",
+    "static/js/2.93451c4e.chunk.js.LICENSE.txt": "/static/js/2.93451c4e.chunk.js.LICENSE.txt",
+    "static/media/AppLogoDark.0cffdb95.svg": "/static/media/AppLogoDark.0cffdb95.svg",
+    "static/media/index.css": "/static/media/roboto-latin-900italic.ebf6d164.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.e6df3388.js",
-    "static/css/2.cdb468e5.chunk.css",
-    "static/js/2.06bcf58a.chunk.js",
-    "static/js/main.214a2751.chunk.js"
+    "static/js/runtime-main.dddc0409.js",
+    "static/css/2.47271137.chunk.css",
+    "static/js/2.93451c4e.chunk.js",
+    "static/js/main.75e39b5e.chunk.js"
   ]
 }
