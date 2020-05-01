@@ -25,7 +25,7 @@ const App = () => {
 					<CurrentUserChecker>
 						<ThemeProvider theme={darkTheme}>
 							<CssBaseline/>
-							<BrowserRouter basename="/deep-hook">
+							<BrowserRouter>
 									<TopBar/>
 									<Routes/>
 							</BrowserRouter>
