@@ -31,15 +31,16 @@ const StyledTabs = withStyles((theme) =>({
 const PostToggler = ({myPosts, favoritesPosts}) => {
 	const classes = useStyles()
 	const location = useLocation();
+
 	return (
 			<div className={classes.root}>
 				<StyledTabs
 						value={location.pathname}
-						aria-label="disabled tabs example"
+						aria-label="PostsToggler"
 						className={classes.tabs}
 				>
 					<Tab
-							label={'My Post'}
+							label={'Posts'}
 							to={myPosts}
 							value={myPosts}
 							exact

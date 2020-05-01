@@ -14,7 +14,7 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route path='/' component={GlobalFeed} exact />
-			<Route path='/profiles/:slug' component={UserProfile} />
+			<Route path='/profiles/:slug' component={UserProfile} exact/>
 			<Route path='/profiles/:slug/favorites' component={UserProfile} />
 			<Route path='/settings' component={Settings} />
 			<Route path='/articles/new' component={CreateArticle} />
