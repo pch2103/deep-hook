@@ -33,9 +33,15 @@ const useStyles = makeStyles(theme => (
 			pos: {
 				marginBottom: 12,
 			},
-			large: {
-				width: theme.spacing(7),
-				height: theme.spacing(7),
+			avatar: {
+				[theme.breakpoints.up('sm')]: {
+					width: theme.spacing(7),
+					height: theme.spacing(7),
+				},
+				[theme.breakpoints.down('xs')]: {
+					width: theme.spacing(4),
+					height: theme.spacing(4),
+				}
 			},
 			likedName: {
 				width: '100%',
@@ -60,13 +66,13 @@ const Feed = ({articles}) => {
 										<Avatar
 												alt="Author_Link"
 												src={article.author.image}
-												className={classes.large}
+												className={classes.avatar}
 										/>
 									</Link>
 								</Grid>
 								<Grid item xs={10}>
 									<div className={classes.likedName}>
-										<Typography variant="h6">
+										<Typography variant="h5">
 											<MaterialLink
 													to={`/profiles/${article.author.username}`}
 													color="inherit"
@@ -82,10 +88,10 @@ const Feed = ({articles}) => {
 										/>
 										</div>
 									</div>
-										<div className={classes.secondaryText}>
+									<Typography variant="caption">
 											{article.createdAt}
-										</div>
-									<Typography variant="h4">
+									</Typography>
+									<Typography variant="h5">
 										<MaterialLink to={`/articles/${article.slug}`} component={Link}>
 											{article.title}
 										</MaterialLink>

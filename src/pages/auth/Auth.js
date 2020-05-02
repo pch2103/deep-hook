@@ -12,26 +12,26 @@ import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import {CurrentUserContext} from "../../contexts/currentUsers";
 import BackendErrorMessages from "../../component/backendErrorMessages";
-import {responsiveFontSizes} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => {
-const responsiveTheme = responsiveFontSizes(theme);
-return ({
-			root: {
-				flexGrow: 1,
-				marginTop: responsiveTheme.spacing(4),
-				justifyContent: "center"
-			},
-			paper: {
-				padding: responsiveTheme.spacing(2),
-				textAlign: 'center',
-				color: responsiveTheme.palette.text.secondary,
-			},
-			item: {
-				marginBottom: responsiveTheme.spacing(4),
-			}
-		})
-		});
+			return (
+					{
+						root: {
+							flexGrow: 1,
+							marginTop: theme.spacing(4),
+							justifyContent: "center"
+						},
+						paper: {
+							padding: theme.spacing(2),
+							textAlign: 'center',
+							color: theme.palette.text.secondary,
+						},
+						item: {
+							marginBottom: theme.spacing(4),
+						}
+					})
+		}
+);
 
 const Auth = (props) => {
 	const classes = useStyles()
@@ -45,8 +45,8 @@ const Auth = (props) => {
 	const [username, setUsername] = useState('')
 	const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false)
 	const [{isLoading, response, error}, doFetch] = useFetch(apiUrl)
-	const [ , setToken] = useLocalStorage('token')
-	const [ , dispatch] = useContext(CurrentUserContext);
+	const [, setToken] = useLocalStorage('token')
+	const [, dispatch] = useContext(CurrentUserContext);
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
@@ -69,9 +69,9 @@ const Auth = (props) => {
 
 	}, [response, setToken, dispatch])
 
-	 if (isSuccessfulSubmit) {
-	 	return <Redirect to='/' />
-	 }
+	if (isSuccessfulSubmit) {
+		return <Redirect to='/'/>
+	}
 
 	return (
 			<Container maxWidth="md">

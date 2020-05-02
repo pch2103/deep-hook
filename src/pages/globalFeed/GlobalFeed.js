@@ -12,6 +12,7 @@ import {getPaginator, limit} from '../../component/utils'
 import {stringify} from 'query-string'
 import PopularTags from "../../component/popularTags";
 import FeedToggler from "../../component/feedToggler";
+import withWidth from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles((theme) => {
 	const responsiveTheme = responsiveFontSizes(theme);
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => {
 
 const GlobalFeed = (props) => {
 	const {currentPage, offset} = getPaginator(props.location.search)
+	const currentWidth = props.width
 	const classes = useStyles();
 	const stringifiedParams = stringify(
 			{
@@ -44,11 +46,13 @@ const GlobalFeed = (props) => {
 	const url = props.match.url
 	const apiUrl = `/articles?${stringifiedParams}`
 	const [{isLoading, response, error}, doFetch] = useFetch(apiUrl)
-
 	useEffect(() => {
 		doFetch()
-	}, [doFetch, currentPage])
+	}, [doFetch, currentPage, currentWidth])
 
+
+	const bigCol = currentWidth === 'xs' ? 12 : 9
+	const smallCol = currentWidth === 'xs' ? 12 : 3
 	return (
 			<>
 				<Box className={classes.root}>
@@ -57,7 +61,7 @@ const GlobalFeed = (props) => {
 				</Box>
 				<Container maxWidth="md" className={classes.content}>
 					<Grid container spacing={2}>
-						<Grid item xs={9}>
+						<Grid item xs={bigCol}>
 							<FeedToggler />
 							{isLoading && <CircularProgress disableShrink/>}
 							{error && <div>Error...</div>}
@@ -73,7 +77,7 @@ const GlobalFeed = (props) => {
 							</>
 							}
 						</Grid>
-						<Grid item xs={3}>
+						<Grid item xs={smallCol}>
 							<Typography variant="h5" className={classes.subheader}>Popular tags</Typography>
 							<PopularTags />
 						</Grid>
@@ -83,4 +87,4 @@ const GlobalFeed = (props) => {
 	)
 };
 
-export default GlobalFeed;
+export default withWidth()(GlobalFeed);

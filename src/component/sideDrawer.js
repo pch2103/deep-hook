@@ -2,8 +2,9 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {Drawer, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import {NavLink} from "react-router-dom"
+import SingInIcon from "@material-ui/icons/HowToReg";
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
 		{
 			list: {
 				width: 250,
@@ -26,7 +27,7 @@ const SideDrawer = ({drawer, toggleDrawer, menuTextAndLink}) => {
 				<List>
 				{ menuTextAndLink.map((content, i) => (
 						<ListItem key={i} button to={content.link} component={NavLink}>
-							<ListItemIcon>{content.icon}</ListItemIcon>
+							<ListItemIcon>{content.icon || <SingInIcon/>}</ListItemIcon>
 							<ListItemText primary={content.text}/>
 						</ListItem>
 						)

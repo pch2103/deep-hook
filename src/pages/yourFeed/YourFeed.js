@@ -12,6 +12,7 @@ import {getPaginator, limit} from '../../component/utils'
 import {stringify} from 'query-string'
 import PopularTags from "../../component/popularTags";
 import FeedToggler from "../../component/feedToggler";
+import withWidth from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles((theme) => {
 	const responsiveTheme = responsiveFontSizes(theme);
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => {
 
 const YourFeed = (props) => {
 	const {currentPage, offset} = getPaginator(props.location.search)
+	const currentWidth = props.width
 	const classes = useStyles();
 	const stringifiedParams = stringify(
 			{
@@ -49,6 +51,8 @@ const YourFeed = (props) => {
 		doFetch()
 	}, [doFetch, currentPage])
 
+	const bigCol = currentWidth === 'xs' ? 12 : 9
+	const smallCol = currentWidth === 'xs' ? 12 : 3
 	return (
 			<>
 				<Box className={classes.root}>
@@ -57,7 +61,7 @@ const YourFeed = (props) => {
 				</Box>
 				<Container maxWidth="md" className={classes.content}>
 					<Grid container spacing={2}>
-						<Grid item xs={9}>
+						<Grid item xs={bigCol}>
 							<FeedToggler />
 							{isLoading && <CircularProgress disableShrink/>}
 							{error && <div>Error...</div>}
@@ -74,7 +78,7 @@ const YourFeed = (props) => {
 							</>
 							}
 						</Grid>
-						<Grid item xs={3}>
+						<Grid item xs={smallCol}>
 							<Typography variant="h5" className={classes.subheader}>Popular tags</Typography>
 							<PopularTags />
 						</Grid>
@@ -84,4 +88,4 @@ const YourFeed = (props) => {
 	)
 };
 
-export default YourFeed;
+export default withWidth()(YourFeed);

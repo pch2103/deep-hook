@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Box from "@material-ui/core/Box";
-import {responsiveFontSizes, Typography} from "@material-ui/core";
+import {Hidden, responsiveFontSizes, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import useFetch from "../../hooks/useFetch";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -70,7 +70,7 @@ const Article = (props) => {
 				fetchArticleResponse.article.author.username === currentUserState.currentUser.username
 		)
 	}
-	const deleteArticle = (event) => {
+	const deleteArticle = () => {
 		doDeleteArticle({
 			method: 'delete'
 		})
@@ -125,6 +125,34 @@ const Article = (props) => {
 													{fetchArticleResponse.article.createdAt}
 												</span>
 											</div>
+											<Hidden xsDown>
+											{isAuthor() && (
+													<div>
+														<Button
+																variant="outlined"
+																color="primary"
+																startIcon={<EditIcon/>}
+																className={classes.button}
+																to={`/articles/${fetchArticleResponse.article.slug}/edit`}
+																component={Link}
+														>
+															Edit
+														</Button>
+														<Button
+																variant="contained"
+																color="secondary"
+																startIcon={<DeleteIcon/>}
+																className={classes.button}
+																onClick={deleteArticle}
+														>
+															Delete
+														</Button>
+													</div>
+											)}
+											</Hidden>
+										</Grid>
+										<Hidden smUp>
+										<Grid item xs={12} className={classes.subheader}>
 											{isAuthor() && (
 													<div>
 														<Button
@@ -149,6 +177,7 @@ const Article = (props) => {
 													</div>
 											)}
 										</Grid>
+										</Hidden>
 									</Grid>
 								</Container>
 							</Box>
